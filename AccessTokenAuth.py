@@ -1,4 +1,5 @@
 # Collect API key from Delinea SecretServer Online
+# you will need this SDK first: python -m pip install python-tss-sdk
 
 from delinea.secrets.server import AccessTokenAuthorizer
 from delinea.secrets.server import SecretServer
