@@ -1,9 +1,18 @@
-#processLRL.py
-#=============
+#processJSON.py
+#==============
 #
-#process the output from Lost Rabbit Labs' WisQuas JSON data into CSV
+#Takes the saved output from Lost Rabbit Labs' WisQuas Digital Footprint Discovery and Inventory
+# and puts it into a CSV file to create a spreadsheet to share with your webmaster or marketing
 #
-#Args: one(1): the input filename
+# INPUT: .json report file
+# OUTPUT: saves a row to the CSV file and gives the OK sign
+#
+# ARGUMENTS: 1 - the input filename
+#
+# note CSV file uses semicolon ";" separator
+#      if you want a header run headerRow.py
+#
+# EXAMPLE: python processJSON.py report.json
 #
 import sys                              
 import os
