@@ -2,5 +2,5 @@
 csv_output = "processJSON-RESULTS.csv"      # initialize variables 
 
 with open (csv_output, "a") as outputfile:   
-    outputfile.write("Domain;IP;DNS;ASN;Registrar;Created;Expires;FQDNs\n")
+    outputfile.write("Domain;IP;DNS;ASN;Registrar;Created;Expires;Siteadvisor;FQDNs\n")
 outputfile.close()
