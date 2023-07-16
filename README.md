@@ -1,7 +1,7 @@
 # wqtools
-load JSON formatted report data into CSV file for easy review of multiple domains
+Load JSON formatted report data into CSV file for easy review of multiple domains.
 
-This script will collect the following fields from the report:
+This script will collect the following fields from the JSON report and put them into a row on a CSV file:
 
 **Domain; IP; DNS; ASN; Registrar; Created; Expires; Siteadvisor; FQDNs; theDataLastUpdated;**
 
