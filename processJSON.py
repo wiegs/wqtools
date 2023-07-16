@@ -1,29 +1,27 @@
-#processLRL.py
+#processJSON.py
 #=============
 #
 #process the output from Lost Rabbit Labs' WisQuas JSON data into CSV
 #
 #Args: one(1): the input filename
 #
-import sys                              
-import os
-import json                             
-import pprint   
+import sys
+import json
 
-csv_output = "processJSON-RESULTS.csv"      # initialize variables
-theIP = ""                              
-theDNS = ""
-theASN = ""
-theRegistrar = ""
-theCreated = ""
-theExpires = ""
-theFQDNs = ""
-theFortiguard = ""                          # variable home for Fortiguard site rating
-theSiteadvisor = ""                         # variable home for Siteadvisor site rating
-JSONfilename = sys.argv[1].strip()          # strip out stuff like whitespace probably
-JSONfilename = JSONfilename.strip('"')      # strip out doublequotes for some reason
-with open(JSONfilename) as f:               # load the file
-    json_var = json.load(f)                 # into the variable
+CSV_OUTPUT = "processJSON-RESULTS.csv"      # initialize variables
+THE_IP = ""
+THE_DNS = ""
+THE_ASN = ""
+THE_REGISTRAR = ""
+THE_CREATED = ""
+THE_EXPIRES = ""
+THE_FQDNS = ""
+THE_DATALASTUPDATED = ""                     # data was last updated
+THS_SITEADVISOR = ""                         # variable home for Siteadvisor site rating
+JSON_FILENAME = sys.argv[1].strip()          # strip out stuff like whitespace probably
+JSON_FILENAME = JSON_FILENAME.strip('"')      # strip out doublequotes for some reason
+with open(JSON_FILENAME, encoding="utf8") as f:  # load the file
+    json_var = json.load(f)                     # into the variable
 keys = json_var.keys()                      # keys is a list of the 4 top keys in the JSON data
 # go get Domain variable theDomain
 for x in keys:                              # loop through the keys array: query, results, scanDoc, others
@@ -34,47 +32,59 @@ for x in keys:
     if x == "scanDoc":
         json_result = json_var[x]
         try:
-            theIP = json_result["ipaddr"]
+            THE_IP = json_result["ipaddr"]
         except:
-            theIP = ""
+            THE_IP = ""
         try:
-            theDNS = json_result["whois"]["nameservers"]
+            THE_DNS = json_result["whois"]["nameservers"]
         except:
-            theDNS = ""    
-        theDNS = str(theDNS)
+            THE_DNS = ""
+        THE_DNS = str(THE_DNS)
         try:
-            theASN = json_result["ipwhois"]["asn"]    
+            THE_ASN = json_result["ipwhois"]["asn"]
         except:
-            theASN = ""
+            THE_ASN = ""
         try:
-            theASN = "ASN " + theASN + " " + json_result["ipwhois"]["asn_description"]
+            THE_ASN = "ASN " + THE_ASN + " " + json_result["ipwhois"]["asn_description"]
         except:
-            theASN = theASN + ""       
+            THE_ASN = THE_ASN + ""
         try:
-            theRegistrar = json_result["whois"]["registrar"]
+            THE_REGISTRAR = json_result["whois"]["registrar"]
         except:
-            theRegistrar = ""
+            THE_REGISTRAR = ""
         try:
-            theCreated = json_result["whois"]["created_date"]
+            THE_CREATED = json_result["whois"]["created_date"]
         except:
-            theCreated = ""
-        try:    
-            theExpires = json_result["whois"]["expired_date"]
-        except:
-            theExpires = ""
+            THE_CREATED = ""
         try:
-            theSiteadvisor = json_result["blacklist"]["siteadvisor"]
+            THE_EXPIRES = json_result["whois"]["expired_date"]
         except:
-            theSiteadvisor = ""
+            THE_EXPIRES = ""
         try:
-            theFQDNs = json_result["subdomains"]
+            THS_SITEADVISOR = json_result["blacklist"]["siteadvisor"]
         except:
-            theFQDNs = ""
-        theFQDNs = str(theFQDNs)
+            THS_SITEADVISOR = ""
+        try:
+            THE_FQDNS = json_result["subdomains"]
+        except:
+            THE_FQDNS = ""
+        try:
+            THE_DATALASTUPDATED = json_result["updatedAt"]
+        except:
+            THE_DATALASTUPDATED = ""
+        THE_FQDNS = str(THE_FQDNS)
 
-with open (csv_output, "a") as outputfile:  # write a new line to the output file
-    outputfile.write(theDomain + ";" + theIP +";" + theDNS +";" + theASN +";" + theRegistrar +";" + theCreated +";" + theExpires +";" + theSiteadvisor +";" + theFQDNs +"\n")
+with open (CSV_OUTPUT, "a") as outputfile:  # write a new line to the output file
+    outputfile.write(theDomain + ";" + \
+                    THE_IP +";" + \
+                    THE_DNS +";" + \
+                    THE_ASN +";" + \
+                    THE_REGISTRAR +";" + \
+                    THE_CREATED +";" + \
+                    THE_EXPIRES +";" + \
+                    THS_SITEADVISOR +";" + \
+                    THE_FQDNS + ";" + \
+                    THE_DATALASTUPDATED + "\n")
 outputfile.close()                          # close the output file
 
 print(sys.argv[1] + " processed OK!")       # give the OK sign
-
