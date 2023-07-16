@@ -5,16 +5,11 @@
 # report from OSINT discovery service API call with curl command
 # Lost Rabbit Labs' WisQuas Digital Footprint Discovery and Inventory
 #
-# INPUT: lildomains.txt
-# OUTPUT: ./output/*.json
-#
-# create folder called output in where you run the script
-#
 # EXAMPLE: python getResults.py
 #
 import os                               # this program executes commands at the OS level
 
-api_key = ''                            # put your API Key here
+api_key = os.environ["WQ_API_KEY"] # put your API Key here
 input_file = 'lildomains.txt'           # list of domains you have previously scanned one per line
 
 input_file = open('lildomains.txt', 'r')   
