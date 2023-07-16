@@ -17,7 +17,7 @@ export WQ_API_KEY=""
 
 Note: to get reports you must have already scanned the domains using the WisQuas service or they will not be available to download.
 
-4. run getResults.py to collect a JSON report on a domain you have previously scanned
+4. run getResults.py to collect a JSON report for each domain in **lildomains.txt** 
    
 downloads to /output/ folder
 ```
