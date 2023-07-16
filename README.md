@@ -27,7 +27,7 @@ python headerRow.py
 4. process the JSON formatted output file with **processJSON.py**
 
 ```
-python processJSON.py optput/example.com_report.json
+python processJSON.py output/example.com_report.json
 ```
 5. collect results from **processJSON-RESULTS.csv**
 
