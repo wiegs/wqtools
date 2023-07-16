@@ -30,7 +30,7 @@ creates file **processJSON-RESULTS.csv**
 ```
 python headerRow.py
 ```
-5. process the JSON formatted output file with **processJSON.py**.  This adds a row for each doman.
+5. process the JSON formatted output file with **processJSON.py**.  This adds a row for each domain.
 
 ```
 python processJSON.py output/example.com_report.json
